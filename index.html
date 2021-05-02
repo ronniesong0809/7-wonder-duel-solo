@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+  <html lang="fr">
+    <head>
+      <!--<base href="/" />-->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="author" content="Board & Gamer">
+      
+      <title>7 Wonders Duel Solo App</title>
+
+      <link href="assets/7wdsa2.css" rel="stylesheet" />
+      
+    </head>
+
+    <body class="">
+      <div class="app-body">
+        
+        <!--<div id="the_decision" class="card decision_card back">
+        </div>-->
+        
+        <div id="launch_screen" class="app_screen">
+          <div id="my_leader" class="card leader_card back">
+            <div class="actions">
+              <p><a class="btn btn-dark" id="get_leader" href="">GET A LEADER !</a></p>
+              <p><a class="btn btn-success" id="start_game" href="#start_game">START</a></p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="app_screen" id="decision_screen">
+          <a class="nav" id="reset_game" href="#reset"><img src="assets/reset.png" alt="" /></a>
+          <div id="the_decision" class="card decision_card back">
+            <div class="actions">
+              <p><a class="btn btn-dark" id="next_card" href="#next_card">NEXT CARD</a></p>
+            </div>
+          </div>
+        </div>
+
+      
+      </div> 
+    <script src="assets/jquery-3.5.1.min.js"></script>
+      
+      <script type="text/javascript">
+        var DEBUG = false;
+        var game_started = false;
+        var decision_deck = [];
+        var played_cards = [];
+        var my_leader = null;
+        var my_decision = null;
+        var active_decision = null;
+        var active_leader = null;
+        
+        var leader_cards =  [{qckn: "hammurabi", name : "Hammurabi", card_img: "Leader 1.png", css_class: "l1"},
+                              {qckn: "aristote", name : "Aristote", card_img: "Leader 2.png", css_class: "l2"},
+                              {qckn: "cleopatre", name : "Cléopâtre", card_img: "Leader 3.png", css_class: "l3"},
+                              {qckn: "bilkis", name : "Bilkis", card_img: "Leader 4.png", css_class: "l4"},
+                              {qckn: "cesar", name : "César", card_img: "Leader 5.png", css_class: "l5"}
+                            ];
+                            
+        const decision_cards = [{name:'d1', card_img: "Decision 1.png", css_class: "d1"},
+                              {name:'d2', card_img: "Decision 2.png", css_class: "d2"},
+                              {name:'d3', card_img: "Decision 3.png", css_class: "d3"},
+                              {name:'d4', card_img: "Decision 4.png", css_class: "d4"},
+                              {name:'d5', card_img: "Decision 5.png", css_class: "d5"},
+                              {name:'d6', card_img: "Decision 6.png", css_class: "d6"},
+                              {name:'d7', card_img: "Decision 7.png", css_class: "d7"},
+                              {name:'d8', card_img: "Decision 8.png", css_class: "d8"},
+                              {name:'d9', card_img: "Decision 9.png", css_class: "d9"},
+                              {name:'d10', card_img: "Decision 10.png", css_class: "d10"},
+                              {name:'d11', card_img: "Decision 11.png", css_class: "d11"},
+                              {name:'d12', card_img: "Decision 12.png", css_class: "d12"},
+                              ];
+
+          $(".app_screen, #start_game, #reset_game").hide();
+          $("#launch_screen").fadeIn();
+          if (!game_started) decision_deck = [...decision_cards];
+          
+          $("a#get_leader").click(function() {
+            var prev_class = (my_leader !== null) ? active_leader : "back";
+            my_leader = Math.floor(Math.random()*(leader_cards.length));
+            active_leader = leader_cards[my_leader].css_class;
+
+            $('#my_leader').toggleClass(prev_class+" "+active_leader, 500);
+
+            $("#start_game").fadeIn();
+            return false;
+          });
+          
+          $("a#start_game").click(function() {
+            $(".app_screen").hide();
+            $("#decision_screen").fadeIn();
+            $("#reset_game").fadeIn();
+            //$('#the_leader').attr('src', 'assets/cards/'+leader_cards[my_leader].card_img);
+            return false;
+          });
+          
+          $("a#next_card").click(function() {
+            if (!game_started) game_started = true;
+
+            if (decision_deck.length == 0) decision_deck = [...decision_cards];
+            if (decision_deck.length > 0) {
+              var prev_class = (my_decision !== null) ? active_decision : "back";
+              
+              my_decision = Math.floor(Math.random()*(decision_deck.length));
+              played_cards.push(decision_deck[my_decision]);
+              active_decision = decision_deck[my_decision].css_class;
+              
+              $('#the_decision').toggleClass(prev_class+" "+active_decision, 1500);
+
+              decision_deck.splice(my_decision, 1);
+            }
+            return false;
+        });
+            
+        $("a#reset_game").click(function() {
+          if (confirm("Quit game and restart ?")) {
+            game_started = false;
+            $(".app_screen").hide();
+            $("#launch_screen").fadeIn();
+            $("#reset_game").hide();
+            $('#my_leader').attr('src', 'assets/cards/Leader Back.png');
+          }
+          return false;
+        });
+      </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-92540513-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-92540513-1');
+    </script>
+  </body>
+</html>

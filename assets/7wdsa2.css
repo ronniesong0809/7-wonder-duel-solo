@@ -1,0 +1,122 @@
+
+body { /* can also be whatever container */
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  background-color: #eee;
+  
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.card {
+  border: 4px solid #fff;
+  border-radius: .5em;
+  background-color: #ddd;
+  background-size: cover;
+  background-position: center center;
+}
+
+.card.leader_card {
+  width:  6.5em;
+  height: 10em;
+}
+
+.card.decision_card {
+  width:  4.4em;
+  height: 6.8em;
+}
+
+@media (orientation: landscape) {
+  .card.leader_card {
+    width: 58.5vh;
+    /*width: calc(90*65/100)vh;*/
+    height: 90vh;
+    max-width: 58.5vh;
+    max-height: 90vh;
+  }
+  
+  .card.decision_card {
+    width: 80vw;
+    height: 52vw;
+    max-width: 80vw;
+    max-height: 52vw;
+  }
+}
+
+@media (orientation: portrait) {
+  .card.leader_card {
+    width: 90vw;
+    height: 138vw;
+    max-width: 90vw;
+    max-height: 138vw;
+  }
+  
+  .card.decision_card {
+    width: 90vw;
+    height: 58.5vw;
+    max-width: 90vw;
+    max-height: 58.5vw;
+  }
+}
+
+.leader_card.l1 { background-image: url("deck_cards/leader_card_1.jpg"); }
+.leader_card.l2 { background-image: url("deck_cards/leader_card_2.jpg"); }
+.leader_card.l3 { background-image: url("deck_cards/leader_card_3.jpg"); }
+.leader_card.l4 { background-image: url("deck_cards/leader_card_4.jpg"); }
+.leader_card.l5 { background-image: url("deck_cards/leader_card_5.jpg"); }
+.leader_card.back { background-image: url("deck_cards/leader_card_back.jpg"); }
+
+.decision_card.d1 { background-image: url("deck_cards/decision_card_1.jpg"); opacity: 1; }
+.decision_card.d2 { background-image: url("deck_cards/decision_card_2.jpg"); opacity: 1; }
+.decision_card.d3 { background-image: url("deck_cards/decision_card_3.jpg"); opacity: 1; }
+.decision_card.d4 { background-image: url("deck_cards/decision_card_4.jpg"); opacity: 1; }
+.decision_card.d5 { background-image: url("deck_cards/decision_card_5.jpg"); opacity: 1; }
+.decision_card.d6 { background-image: url("deck_cards/decision_card_6.jpg"); opacity: 1; }
+.decision_card.d7 { background-image: url("deck_cards/decision_card_7.jpg"); opacity: 1; }
+.decision_card.d8 { background-image: url("deck_cards/decision_card_8.jpg"); opacity: 1; }
+.decision_card.d9 { background-image: url("deck_cards/decision_card_9.jpg"); opacity: 1; }
+.decision_card.d10 { background-image: url("deck_cards/decision_card_10.jpg"); opacity: 1; }
+.decision_card.d11 { background-image: url("deck_cards/decision_card_11.jpg"); opacity: 1; }
+.decision_card.d12 { background-image: url("deck_cards/decision_card_12.jpg"); opacity: 1; }
+.decision_card.back { background-image: url("deck_cards/decision_card_back.jpg"); opacity: 1; }
+
+.card .actions {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.card .btn {
+  display: block;
+  background-color: #f1f1f1;
+  color: black;
+  cursor: pointer;
+  padding: .375rem .75rem;
+  font-size: .8rem;
+  line-height: 1.5;
+  border-radius: .25rem;
+  border: 1px solid transparent;
+  text-decoration: none;
+}
+
+.card .btn:hover {
+  background-color: black;
+  color: white;
+}
+
+#reset_game {
+  position: absolute;
+  right: 1em;
+  top: 1em;
+}
+
+#reset_game img {
+  width: 32px;
+  height: 32px;
+}
